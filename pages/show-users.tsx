@@ -1,36 +1,78 @@
 import React from "react";
-import { useUser } from "@auth0/nextjs-auth0";
 import { Layout } from "../components/Layout";
-import Image from "next/image";
+import { GetServerSideProps } from "next";
+import { getDatabase } from "../src/utils/database";
+import { ObjectID } from "bson";
+type AgendaType = {
+  disponibilities: [
+    {
+      lundi: string;
+    },
+    {
+      mardi: string;
+    },
+    {
+      mercredi: string;
+    },
+    {
+      jeudi: string;
+    },
+    {
+      vendredi: string;
+    },
+    {
+      samedi: string;
+    }
+  ];
+}[];
 
-export default function Profile() {
-  const { user, error, isLoading } = useUser();
+export const getServerSideProps: GetServerSideProps = async () => {
+  const mongodb = await getDatabase();
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>{error.message}</div>;
-  console.log(user);
+  const response = await mongodb.db().collection("test").find().toArray();
 
-  return (
-    user && (
+  const data = await JSON.parse(JSON.stringify(response));
+  // console.log(data[0].disponibilities)
+
+  return {
+    props: {
+      name: data[0].name,
+      email: data[0].email,
+      status: data[0].status,
+      disponibilities: data[0].disponibilities,
+    },
+  };
+};
+
+const Cart: React.FC<{
+  name: string;
+  email: string;
+  status: string;
+  disponibilities: AgendaType;
+}> = ({ name, email, status, disponibilities }) => {
+  if (email !== null) {
+    return (
       <Layout>
-        <div >
-          <main >
-            <h2>User conected</h2>
-
-            <div >
-              <div >
-                <h2>mail : {user.name}</h2>
-                <Image
-                  src={`${user.picture}`}
-                  alt="cover img"
-                  width={150}
-                  height={150}
-                />
-              </div>
-            </div>
-          </main>
+        <div className="container">
+          <li>name: {name}</li>
+          <li>email: {email}</li>
+          <li>status: {status}</li>
+          <li>diponibilities: </li>
+          <li>{`${Object.keys(disponibilities)}\n`}</li>
+          {disponibilities.map((element: AgendaType) => {
+            return <div key={"test"}>{element}</div>;
+          })}
         </div>
+        {console.log(disponibilities)}
       </Layout>
-    )
-  );
-}
+    );
+  } else {
+    return (
+      <Layout>
+        <div className="container">Please log in to see your cart</div>
+      </Layout>
+    );
+  }
+};
+
+export default Cart;
