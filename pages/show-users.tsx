@@ -13,12 +13,12 @@ export default function Profile() {
   return (
     user && (
       <Layout>
-        <div className={styles.container}>
-          <main className={styles.main}>
+        <div >
+          <main >
             <h2>User conected</h2>
 
-            <div className={styles.grid}>
-              <div className={styles.card}>
+            <div >
+              <div >
                 <h2>mail : {user.name}</h2>
                 <Image
                   src={`${user.picture}`}
