@@ -1,12 +1,10 @@
-import type { NextPage } from "next";
 import { Layout } from "../components/Layout";
-import styles from "../styles/Home.module.css";
 
 const Forms: React.FC = () => {
   return (
-    <div className={styles.container}>
+    <>
       <Layout>
-        <main className={styles.main}>
+        <main>
           <form action="#">
             <label>
               <input type="text" name="name" placeholder="name" />
@@ -27,7 +25,7 @@ const Forms: React.FC = () => {
           </form>
         </main>
       </Layout>
-    </div>
+    </>
   );
 };
 
