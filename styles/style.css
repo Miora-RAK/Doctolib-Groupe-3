@@ -28,6 +28,8 @@ nav a:hover {
 }
 
 footer {
+  background-color: #8fbc8f;
+  color: #ffffff;
   width: 100vw;
   padding: 15px 0;
   text-align: center;
@@ -37,4 +39,54 @@ footer {
 .container {
   width: 70vw;
   margin: auto;
+  min-height: 90vh;
+  padding: 2rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* CARD */
+.connexion-container {
+  background-color: #8fbc8f;
+  width: 100vw;
+  min-height: 30vh;
+  padding: 4rem 0;
+}
+
+.card {
+  margin: 1rem;
+  padding: 1.5rem;
+  text-align: center;
+  color: inherit;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+  max-width: 250px;
+}
+
+.card:hover,
+.card:focus,
+.card:active {
+  color: #8fbc8f;
+  border-color: #8fbc8f;
+}
+
+.card h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+}
+
+.card p {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
