@@ -8,7 +8,7 @@ export default async function handler(
   console.log(req.body);
   const user = await mongodb
     .db()
-    .collection("test")
+    .collection("users")
     .updateOne(
       { email: req.body.email },
       {
