@@ -1,5 +1,6 @@
 import React from "react";
 import { Layout } from "../components/Layout";
+
 import { GetServerSideProps } from "next";
 import { getDatabase } from "../src/utils/database";
 
@@ -39,6 +40,7 @@ const Cart: React.FC<{
           {/* {disponibilities.map((element: string[]) => {
             return <div key={"test"}>{element}</div>
           })} */}
+
         </div>
         {console.log(disponibilities)}
       </Layout>
