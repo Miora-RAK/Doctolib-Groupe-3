@@ -1,44 +1,57 @@
 import React from "react";
-import { useUser } from "@auth0/nextjs-auth0";
 import { Layout } from "../components/Layout";
-import Image from "next/image";
-import Link from "next/link";
 
-export default function Profile() {
-  const { user, error, isLoading } = useUser();
-  console.log(user);
+import { GetServerSideProps } from "next";
+import { getDatabase } from "../src/utils/database";
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-  if (error) {
-    return <div>{error.message}</div>;
-  }
+export const getServerSideProps: GetServerSideProps = async () => {
+  const mongodb = await getDatabase();
 
-  return (
-    user && (
+  const response = await mongodb.db().collection("test").find().toArray();
+
+  const data = await JSON.parse(JSON.stringify(response));
+  // console.log(data[0].disponibilities)
+
+  return {
+    props: {
+      name: data[0].name,
+      email: data[0].email,
+      status: data[0].status,
+      disponibilities: data[0].disponibilities,
+    },
+  };
+};
+
+const Cart: React.FC<{
+  name: string;
+  email: string;
+  status: string;
+  disponibilities: any;
+}> = ({ name, email, status, disponibilities }) => {
+  if (email !== null) {
+    return (
       <Layout>
-        <Link href={`/api/getUser?email=${user.email}`}>
-          <a>test route api</a>
-        </Link>
-        <div>
-          <main>
-            <h2>User conected</h2>
+        <div className="container">
+          <li>name: {name}</li>
+          <li>email: {email}</li>
+          <li>status: {status}</li>
+          <li>diponibilities: </li>
+          <li>{`${Object.keys(disponibilities)}\n`}</li>
+          {/* {disponibilities.map((element: string[]) => {
+            return <div key={"test"}>{element}</div>
+          })} */}
 
-            <div>
-              <div>
-                <h2>mail : {user.name}</h2>
-                <Image
-                  src={`${user.picture}`}
-                  alt="cover img"
-                  width={150}
-                  height={150}
-                />
-              </div>
-            </div>
-          </main>
         </div>
+        {console.log(disponibilities)}
       </Layout>
-    )
-  );
-}
+    );
+  } else {
+    return (
+      <Layout>
+        <div className="container">Please log in to see your cart</div>
+      </Layout>
+    );
+  }
+};
+
+export default Cart;
