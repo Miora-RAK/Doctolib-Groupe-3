@@ -144,3 +144,14 @@ form input {
   background: #006400;
   border: 1px solid #333;
 }
+/* myAppointment */
+.appointment{
+  margin-bottom: 6em;
+  max-width: 80%;
+  text-align: justify;
+}
+.appointment-text{
+  font-size: 1.5em;
+  margin-left: 2em;
+  margin-top: 2em;
+}
