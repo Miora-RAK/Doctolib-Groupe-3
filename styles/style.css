@@ -90,3 +90,35 @@ footer {
   justify-content: center;
   align-items: center;
 }
+
+/* Calendrier */
+.calendar {
+  display: flex;
+  text-align: center;
+}
+
+.calendar > div {
+  margin: 0 10px;
+}
+.button {
+  border-radius: 5px;
+  box-shadow: none;
+  padding: 10px 20px;
+  margin: 15px 0;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.available {
+  background-color: green;
+  color: white;
+  border: green 1px solid;
+}
+
+.notAvailable {
+  background-color: white;
+  color: gray;
+  border: gray 1px solid;
+}

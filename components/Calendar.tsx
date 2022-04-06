@@ -2,22 +2,24 @@ import React from "react";
 
 export const Calendar = (props: any) => {
   return (
-    <>
+    <div className="calendar">
       <div>
         <h2>Lundi</h2>
         {props.dispo.day.monday.map((element: any) => {
           return (
             <div key={element.starthour}>
-              <p>
-                Start hour : {element.starthour} - End hour : {element.endhour}
-              </p>
               <button
+                className={
+                  element.dispo ? "button available" : "button notAvailable"
+                }
                 onClick={() => {
                   element.dispo = !element.dispo;
-                  console.log(props.dispo.day.monday[0].dispo);
+                  props.setDispo((dispo: any) => ({
+                    ...dispo,
+                  }));
                 }}
               >
-                {element.dispo ? "Dispo." : "Pas dispo"}
+                {element.starthour}h - {element.endhour}h
               </button>
             </div>
           );
@@ -29,9 +31,19 @@ export const Calendar = (props: any) => {
         {props.dispo.day.tuesday.map((element: any) => {
           return (
             <div key={element.starthour}>
-              <p>
-                Start hour : {element.starthour} - End hour : {element.endhour}
-              </p>
+              <button
+                className={
+                  element.dispo ? "button available" : "button notAvailable"
+                }
+                onClick={() => {
+                  element.dispo = !element.dispo;
+                  props.setDispo((dispo: any) => ({
+                    ...dispo,
+                  }));
+                }}
+              >
+                {element.starthour}h - {element.endhour}h
+              </button>
             </div>
           );
         })}
@@ -42,22 +54,42 @@ export const Calendar = (props: any) => {
         {props.dispo.day.wednesday.map((element: any) => {
           return (
             <div key={element.starthour}>
-              <p>
-                Start hour : {element.starthour} - End hour : {element.endhour}
-              </p>
+              <button
+                className={
+                  element.dispo ? "button available" : "button notAvailable"
+                }
+                onClick={() => {
+                  element.dispo = !element.dispo;
+                  props.setDispo((dispo: any) => ({
+                    ...dispo,
+                  }));
+                }}
+              >
+                {element.starthour}h - {element.endhour}h
+              </button>
             </div>
           );
         })}
       </div>
 
       <div>
-        <h2>jeudi</h2>
+        <h2>Jeudi</h2>
         {props.dispo.day.thursday.map((element: any) => {
           return (
             <div key={element.starthour}>
-              <p>
-                Start hour : {element.starthour} - End hour : {element.endhour}
-              </p>
+              <button
+                className={
+                  element.dispo ? "button available" : "button notAvailable"
+                }
+                onClick={() => {
+                  element.dispo = !element.dispo;
+                  props.setDispo((dispo: any) => ({
+                    ...dispo,
+                  }));
+                }}
+              >
+                {element.starthour}h - {element.endhour}h
+              </button>
             </div>
           );
         })}
@@ -68,13 +100,23 @@ export const Calendar = (props: any) => {
         {props.dispo.day.friday.map((element: any) => {
           return (
             <div key={element.starthour}>
-              <p>
-                Start hour : {element.starthour} - End hour : {element.endhour}
-              </p>
+              <button
+                className={
+                  element.dispo ? "button available" : "button notAvailable"
+                }
+                onClick={() => {
+                  element.dispo = !element.dispo;
+                  props.setDispo((dispo: any) => ({
+                    ...dispo,
+                  }));
+                }}
+              >
+                {element.starthour}h - {element.endhour}h
+              </button>
             </div>
           );
         })}
       </div>
-    </>
+    </div>
   );
 };
