@@ -84,14 +84,14 @@ const Home: React.FC<HomeProps> = ({
         <div>
           {data1.status === "patient" && user ? (
             <>
-              <form role="search" onSubmit={handleSubmit}>
+              <form className="form-search-bar" role="search" onSubmit={handleSubmit}>
                 <input
                   onChange={handleInputText}
                   type="text"
                   placeholder="Rechercher sur le site..."
                   size={50}
                 />
-                <button className="form-button" type="submit">
+                <button className="form-search-bar-button" type="submit">
                   Trouver un médecin
                 </button>
               </form>
