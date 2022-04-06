@@ -2,29 +2,6 @@ import React from "react";
 import { Layout } from "../components/Layout";
 import { GetServerSideProps } from "next";
 import { getDatabase } from "../src/utils/database";
-import { ObjectID } from "bson";
-type AgendaType = {
-  disponibilities: [
-    {
-      lundi: string;
-    },
-    {
-      mardi: string;
-    },
-    {
-      mercredi: string;
-    },
-    {
-      jeudi: string;
-    },
-    {
-      vendredi: string;
-    },
-    {
-      samedi: string;
-    }
-  ];
-}[];
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const mongodb = await getDatabase();
@@ -48,7 +25,7 @@ const Cart: React.FC<{
   name: string;
   email: string;
   status: string;
-  disponibilities: AgendaType;
+  disponibilities: any;
 }> = ({ name, email, status, disponibilities }) => {
   if (email !== null) {
     return (
@@ -59,9 +36,9 @@ const Cart: React.FC<{
           <li>status: {status}</li>
           <li>diponibilities: </li>
           <li>{`${Object.keys(disponibilities)}\n`}</li>
-          {disponibilities.map((element: AgendaType) => {
-            return <div key={"test"}>{element}</div>;
-          })}
+          {/* {disponibilities.map((element: string[]) => {
+            return <div key={"test"}>{element}</div>
+          })} */}
         </div>
         {console.log(disponibilities)}
       </Layout>
