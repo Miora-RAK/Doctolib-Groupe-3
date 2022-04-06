@@ -48,12 +48,12 @@ footer {
   align-items: center;
 }
 
-/* CARD */
+/* HOME */
 .connexion-container {
   background-color: #8fbc8f;
   width: 100vw;
   min-height: 30vh;
-  padding: 4rem 0;
+  padding: 4vw 6vw;
 }
 
 .card {
@@ -89,6 +89,73 @@ footer {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+.home-button {
+  font-size: 16px;
+  text-align: center;
+  padding: 0.8em;
+  border-radius: 5px;
+  margin-top: 3em;
+  border: 1px solid #ffffff;
+  width: 15em;
+  cursor: pointer;
+  background: #ffffff;
+  color: #8fbc8f;
+}
+
+.home-button:hover {
+  transition: all 0.2s ease-in-out;
+  color: #006400;
+  background: #ffffff;
+  border: 1px solid #006400;
+}
+
+/* SEARCH-BAR */
+
+form {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  padding: 5em 0;
+  position: relative;
+}
+
+form input {
+  padding: 10px 5px;
+  width: 100%;
+  font-size: 20px;
+  margin: 5px 10px;
+}
+
+.form-button {
+  display: block;
+  margin: 5px 10px;
+  padding: 10px;
+  font-size: 18px;
+  width: 250px;
+  border-radius: 5px;
+  background: #8fbc8f;
+  cursor: pointer;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+}
+
+.form-button:hover {
+  background: #006400;
+  border: 1px solid #333;
+}
+/* myAppointment */
+.appointment{
+  margin-bottom: 6em;
+  max-width: 80%;
+  text-align: justify;
+}
+.appointment-text{
+  font-size: 1.5em;
+  margin-left: 2em;
+  margin-top: 2em;
 }
 
 /* Calendrier */
