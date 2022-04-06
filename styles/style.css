@@ -113,7 +113,7 @@ footer {
 
 /* SEARCH-BAR */
 
-form {
+.form-search-bar {
   margin: 0 auto;
   display: flex;
   justify-content: center;
@@ -122,14 +122,14 @@ form {
   position: relative;
 }
 
-form input {
+.form-search-bar input {
   padding: 10px 5px;
   width: 100%;
   font-size: 20px;
   margin: 5px 10px;
 }
 
-.form-button {
+.form-search-bar-button {
   display: block;
   margin: 5px 10px;
   padding: 10px;
@@ -142,7 +142,7 @@ form input {
   border: 1px solid #ffffff;
 }
 
-.form-button:hover {
+.form-search-bar-button:hover {
   background: #006400;
   border: 1px solid #333;
 }
