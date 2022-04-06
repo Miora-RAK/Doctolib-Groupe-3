@@ -29,8 +29,14 @@ const Forms: React.FC = () => {
         disponibilities: e.target[4].value,
       };
     }
-
-    console.log(user);
+    // console.log(user);
+    fetch("/api/update-user", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    });
   };
 
   return (
