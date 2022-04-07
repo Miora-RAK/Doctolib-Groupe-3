@@ -2,6 +2,7 @@ import { getSession, useUser } from "@auth0/nextjs-auth0";
 import type { GetServerSideProps, NextPage } from "next";
 import Link from "next/link";
 import React from "react";
+import { Calendar } from "../components/Calendar";
 import { Layout } from "../components/Layout";
 import { getDatabase } from "../src/utils/database";
 
@@ -27,7 +28,13 @@ export const getServerSideProps: GetServerSideProps = async ({
     .find({ status: "Doctor" })
     .toArray();
   const allData = await JSON.parse(JSON.stringify(responseTwo));
-  // console.log(allData);
+  console.log(allData);
+
+  // console.log(
+  //   "ma data",
+
+  //   data[0].dispo
+  // );
 
   return {
     props: {
@@ -43,7 +50,6 @@ const Home: React.FC<{ data: any; allData: any }> = ({ data, allData }) => {
   if (!user) {
     // if no connected
     return (
-
       <Layout>
         <div className="connexion-container">
           <h1>No data</h1>
@@ -56,7 +62,6 @@ const Home: React.FC<{ data: any; allData: any }> = ({ data, allData }) => {
           </Link>
         </div>
         <div>
-
           <p>Prendre rendez-vous avec un médecin en 3 étapes</p>
           <div className="row">
             <div className="card">
@@ -72,7 +77,6 @@ const Home: React.FC<{ data: any; allData: any }> = ({ data, allData }) => {
               <p>Je prend RDV sur un des créneaux disponible</p>
             </div>
           </div>
-
         </div>
       </Layout>
     );
@@ -99,58 +103,79 @@ const Home: React.FC<{ data: any; allData: any }> = ({ data, allData }) => {
             </button>
           </form>
           {/* liste des docteurs */}
-          {/* <div className="row">
-            <div className="card">
-              <p>Dr </p>
-              <p>Status: </p>
-              <p>Spécialité:</p>
-              <p>E-mail: </p>
-            </div>
-            <div className="card">Calendrier</div>
-          </div> */}
-
-          {/* {console.log(allData)} */}
-
-          {/* {allData.map((element: any) => {
-            // console.log(element);
-            return <div key={element._id}>Hello</div>;
-          })} */}
+          {allData.map((user: any, index: any) => {
+            return (
+              <>
+                <div className="row">
+                  <div key={index} className="card">
+                    <p>Dr {user.name}</p>
+                    <p>{user.status}</p>
+                    <p>Spécialité:</p>
+                    <p>E-mail: {user.email}</p>
+                  </div>
+                  <div key={index} className="card">
+                    {Object.keys(user?.dispo?.day).map((dayName) => {
+                      console.log(dayName);
+                      return user.dispo.day[dayName].map((element: any) => {
+                        if (element.dispo) {
+                          return <div>{element.starthour}</div>;
+                        } else {
+                          return <div></div>;
+                        }
+                      });
+                    })}
+                  </div>
+                </div>
+              </>
+            );
+          })}
         </Layout>
       );
     } else {
       return (
         // if connected and isn't patient
         <Layout>
-          <h1>Doctor</h1>
+          <h1>
+            Emploi du temps Doctor <hr />
+          </h1>
+          <br />
+          {allData.map((user: any, index: any) => {
+            return (
+              <>
+                <div className="row">
+                  <div key={index} className="card">
+                    <p>Dr {user.name}</p>
+                    <p>{user.status}</p>
+                    <p>Spécialité:</p>
+                    <p>E-mail: {user.email}</p>
+                  </div>
+                  <div key={index} className="card">
+                    {Object.keys(user?.dispo?.day).map((dayName) => {
+                      console.log(dayName);
+                      return user.dispo.day[dayName].map((element: any) => {
+                        if (element.dispo) {
+                          return <div>{element.starthour}</div>;
+                        } else {
+                          return <div></div>;
+                        }
+                      });
+                    })}
+                    {/* {user.dispo?.day.map((date: any, index: any) => (
+                      <>
+                        <div className="card">
+                          <p> {Object.keys(date)}</p>
+                          <p> {Object.values(date)}</p>
+                        </div>
+                      </>
+                    ))} */}
+                  </div>
+                </div>
+              </>
+            );
+          })}
         </Layout>
       );
     }
   }
 };
 export default Home;
-
-// {allData.map((user: any, index: any) => {
-//   if (user.status === "doctor")
-//     return (
-//       <>
-//         <div className="row">
-//           <div key={index} className="card">
-//             <p>Dr {user.name}</p>
-//             <p>{user.status}</p>
-//             <p>Spécialité:</p>
-//             <p>E-mail: {user.email}</p>
-//           </div>
-//           <div key={index} className="card">
-//             {user.disponibilities.map((date: any, index: any) => (
-//               <>
-//                 <div className="card">
-//                   <p> {Object.keys(date)}</p>
-//                   <p> {Object.values(date)}</p>
-//                 </div>
-//               </>
-//             ))}
-//           </div>
-//         </div>
-//       </>
-//     );
-// })}
