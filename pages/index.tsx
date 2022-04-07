@@ -75,12 +75,19 @@ const Home: React.FC<{ data: any; allData: any }> = ({ data, allData }) => {
     );
   } else {
     // if connected
-    if (data[0].status === "patient") {
+    if (data[0].status === "Patient") {
       return (
         // if connected and is patient
         <Layout>
           <div className="connexion-container">
             <h1>Patient</h1>
+            <div>
+              <Link href="/myAppointment">
+              <a>
+              <p>Mes rendez-vous</p>
+              </a>
+              </Link>
+            </div>
             <button className="home-button">
               Aucun RDV de prévue (RDV prévue pour le...)
             </button>
