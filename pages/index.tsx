@@ -20,6 +20,7 @@ export const getServerSideProps: GetServerSideProps = async ({
     .toArray();
 
   const data = await JSON.parse(JSON.stringify(response));
+
   const responseTwo = await mongodb
     .db()
     .collection("users")
@@ -27,6 +28,7 @@ export const getServerSideProps: GetServerSideProps = async ({
     .toArray();
   const allData = await JSON.parse(JSON.stringify(responseTwo));
   // console.log(allData);
+
   return {
     props: {
       data: data,
@@ -37,9 +39,11 @@ export const getServerSideProps: GetServerSideProps = async ({
 
 const Home: React.FC<{ data: any; allData: any }> = ({ data, allData }) => {
   const { user, error, isLoading } = useUser();
+
   if (!user) {
     // if no connected
     return (
+
       <Layout>
         <div className="connexion-container">
           <h1>No data</h1>
@@ -52,6 +56,7 @@ const Home: React.FC<{ data: any; allData: any }> = ({ data, allData }) => {
           </Link>
         </div>
         <div>
+
           <p>Prendre rendez-vous avec un médecin en 3 étapes</p>
           <div className="row">
             <div className="card">
@@ -67,6 +72,7 @@ const Home: React.FC<{ data: any; allData: any }> = ({ data, allData }) => {
               <p>Je prend RDV sur un des créneaux disponible</p>
             </div>
           </div>
+
         </div>
       </Layout>
     );

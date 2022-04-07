@@ -8,7 +8,7 @@ export const Calendar = (props: any) => {
         {props.dispo.day.monday.map((element: any) => {
           return (
             <div key={element.starthour}>
-              <button
+              <p
                 className={
                   element.dispo ? "button available" : "button notAvailable"
                 }
@@ -20,7 +20,7 @@ export const Calendar = (props: any) => {
                 }}
               >
                 {element.starthour}h - {element.endhour}h
-              </button>
+              </p>
             </div>
           );
         })}
@@ -31,7 +31,7 @@ export const Calendar = (props: any) => {
         {props.dispo.day.tuesday.map((element: any) => {
           return (
             <div key={element.starthour}>
-              <button
+              <p
                 className={
                   element.dispo ? "button available" : "button notAvailable"
                 }
@@ -43,7 +43,7 @@ export const Calendar = (props: any) => {
                 }}
               >
                 {element.starthour}h - {element.endhour}h
-              </button>
+              </p>
             </div>
           );
         })}
@@ -54,7 +54,7 @@ export const Calendar = (props: any) => {
         {props.dispo.day.wednesday.map((element: any) => {
           return (
             <div key={element.starthour}>
-              <button
+              <p
                 className={
                   element.dispo ? "button available" : "button notAvailable"
                 }
@@ -66,7 +66,7 @@ export const Calendar = (props: any) => {
                 }}
               >
                 {element.starthour}h - {element.endhour}h
-              </button>
+              </p>
             </div>
           );
         })}
@@ -77,7 +77,7 @@ export const Calendar = (props: any) => {
         {props.dispo.day.thursday.map((element: any) => {
           return (
             <div key={element.starthour}>
-              <button
+              <p
                 className={
                   element.dispo ? "button available" : "button notAvailable"
                 }
@@ -89,7 +89,7 @@ export const Calendar = (props: any) => {
                 }}
               >
                 {element.starthour}h - {element.endhour}h
-              </button>
+              </p>
             </div>
           );
         })}
@@ -100,7 +100,7 @@ export const Calendar = (props: any) => {
         {props.dispo.day.friday.map((element: any) => {
           return (
             <div key={element.starthour}>
-              <button
+              <p
                 className={
                   element.dispo ? "button available" : "button notAvailable"
                 }
@@ -112,7 +112,7 @@ export const Calendar = (props: any) => {
                 }}
               >
                 {element.starthour}h - {element.endhour}h
-              </button>
+              </p>
             </div>
           );
         })}
