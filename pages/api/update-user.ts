@@ -2,10 +2,9 @@ import { getDatabase } from "../../src/utils/database";
 
 export default async function handler(
   req: { body: { email: string; name: string; status: string } },
-  res: { redirect: (arg0: number, arg1: string) => void }
+  res: { redirect: (arg0: string, arg1: number) => void }
 ) {
   const mongodb = await getDatabase();
-  console.log(req.body);
   const user = await mongodb
     .db()
     .collection("users")
@@ -19,5 +18,5 @@ export default async function handler(
       }
     );
 
-  res.redirect(307, "/");
+  res.redirect("/", 302);
 }

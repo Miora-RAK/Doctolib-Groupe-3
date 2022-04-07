@@ -15,7 +15,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const email = data.map((e: any) => e.email);
   const status = data.map((e: any) => e.status);
   const disponibilities = data.map((e: any) => e.disponibilities);
-  console.log(data[1]);
+  // console.log(data[1]);
 
   return {
     props: {
@@ -50,11 +50,11 @@ const Home: React.FC<HomeProps> = ({
   const handleInputText = (event: any) => {
     const value = event.target.value;
     setFormText(value);
-    console.log(value);
+    // console.log(value);
   };
   const handleSubmit = (event: any) => {
     event.preventDefault();
-    console.log("ma data", formText);
+    // console.log("ma data", formText);
     formText === "doctor"
       ? setDoctor("il y a un docteur")
       : setDoctor("pas de docteur");
@@ -84,7 +84,11 @@ const Home: React.FC<HomeProps> = ({
         <div>
           {data1.status === "patient" && user ? (
             <>
-              <form className="form-search-bar" role="search" onSubmit={handleSubmit}>
+              <form
+                className="form-search-bar"
+                role="search"
+                onSubmit={handleSubmit}
+              >
                 <input
                   onChange={handleInputText}
                   type="text"

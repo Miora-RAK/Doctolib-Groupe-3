@@ -41,6 +41,7 @@ const Forms: React.FC<{ data: any }> = ({ data }) => {
       setStatus(target.value);
     }
   };
+  // console.log(data[0].email);
 
   const handleText = (e: any) => {};
 
@@ -50,13 +51,13 @@ const Forms: React.FC<{ data: any }> = ({ data }) => {
     if (status === "Patient") {
       user = {
         name: e.target[0].value,
-        email: e.target[1].value,
+        email: data[0].email,
         status: status,
       };
     } else {
       user = {
         name: e.target[0].value,
-        email: e.target[1].value,
+        email: data[0].email,
         status: status,
         disponibilities: e.target[4].value,
       };
@@ -99,15 +100,6 @@ const Forms: React.FC<{ data: any }> = ({ data }) => {
                 type="text"
                 name="name"
                 placeholder="name"
-                onChange={handleText}
-              />
-            </label>
-            <br />
-            <label>
-              <input
-                type="text"
-                name="email"
-                placeholder="email"
                 onChange={handleText}
               />
             </label>
