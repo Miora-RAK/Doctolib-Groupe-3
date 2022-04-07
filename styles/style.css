@@ -49,6 +49,10 @@ footer {
 }
 
 /* HOME */
+.img-home {
+  width: 10%;
+  border-radius: 50%;
+}
 .connexion-container {
   background-color: #8fbc8f;
   width: 100vw;
@@ -90,7 +94,17 @@ footer {
   justify-content: center;
   align-items: center;
 }
-
+.row-doctor-list {
+  width: 80rem;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  margin: 2vw;
+  padding: 2vw;
+}
 .home-button {
   font-size: 16px;
   text-align: center;
@@ -147,12 +161,12 @@ footer {
   border: 1px solid #333;
 }
 /* myAppointment */
-.appointment{
+.appointment {
   margin-bottom: 6em;
   max-width: 80%;
   text-align: justify;
 }
-.appointment-text{
+.appointment-text {
   font-size: 1.5em;
   margin-left: 2em;
   margin-top: 2em;
@@ -188,4 +202,12 @@ footer {
   background-color: white;
   color: gray;
   border: gray 1px solid;
+}
+
+.red {
+  background-color: red;
+}
+
+.green {
+  background-color: gray;
 }

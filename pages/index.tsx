@@ -5,7 +5,8 @@ import React from "react";
 import { Calendar } from "../components/Calendar";
 import { Layout } from "../components/Layout";
 import { getDatabase } from "../src/utils/database";
-
+import { week } from "../src/utils/weekType";
+import Image from "next/image";
 export const getServerSideProps: GetServerSideProps = async ({
   req,
   res,
@@ -106,12 +107,20 @@ const Home: React.FC<{ data: any; allData: any }> = ({ data, allData }) => {
           {allData.map((user: any, index: any) => {
             return (
               <>
-                <div className="calendar">
+                <div className="row-doctor-list">
                   <div key={index} className="card">
-                    <p>Dr {user.name}</p>
-                    <p>{user.status}</p>
-                    <p>Spécialité:</p>
-                    <p>E-mail: {user.email}</p>
+                    <p>
+                      <strong>Dr</strong> {user.name}
+                    </p>
+                    <p>
+                      <strong>Status:</strong> {user.status}
+                    </p>
+                    <p>
+                      <strong>Spécialité:</strong>
+                    </p>
+                    <p>
+                      <strong>E-mail:</strong> {user.email}
+                    </p>
                   </div>
                   <div key={index} className="calendar">
                     {Object.keys(user?.dispo?.day).map((dayName) => {
@@ -135,7 +144,11 @@ const Home: React.FC<{ data: any; allData: any }> = ({ data, allData }) => {
                                   </div>
                                 );
                               } else {
-                                return <div></div>;
+                                return (
+                                  <div>
+                                    <p className="button notAVailable">-</p>
+                                  </div>
+                                );
                               }
                             })}
                           </div>
