@@ -28,13 +28,6 @@ export const getServerSideProps: GetServerSideProps = async ({
     .find({ status: "Doctor" })
     .toArray();
   const allData = await JSON.parse(JSON.stringify(responseTwo));
-  console.log(allData);
-
-  // console.log(
-  //   "ma data",
-
-  //   data[0].dispo
-  // );
 
   return {
     props: {
@@ -115,7 +108,6 @@ const Home: React.FC<{ data: any; allData: any }> = ({ data, allData }) => {
                   </div>
                   <div key={index} className="card">
                     {Object.keys(user?.dispo?.day).map((dayName) => {
-                      console.log(dayName);
                       return user.dispo.day[dayName].map((element: any) => {
                         if (element.dispo) {
                           return <div>{element.starthour}</div>;
@@ -136,39 +128,41 @@ const Home: React.FC<{ data: any; allData: any }> = ({ data, allData }) => {
         // if connected and isn't patient
         <Layout>
           <h1>
-            Emploi du temps Doctor <hr />
+            Planning <hr />
           </h1>
           <br />
-          {allData.map((user: any, index: any) => {
+          {data.map((doctor: any, index: any) => {
             return (
               <>
-                <div className="row">
-                  <div key={index} className="card">
-                    <p>Dr {user.name}</p>
-                    <p>{user.status}</p>
-                    <p>Spécialité:</p>
-                    <p>E-mail: {user.email}</p>
-                  </div>
-                  <div key={index} className="card">
-                    {Object.keys(user?.dispo?.day).map((dayName) => {
-                      console.log(dayName);
-                      return user.dispo.day[dayName].map((element: any) => {
-                        if (element.dispo) {
-                          return <div>{element.starthour}</div>;
-                        } else {
-                          return <div></div>;
-                        }
-                      });
-                    })}
-                    {/* {user.dispo?.day.map((date: any, index: any) => (
+                <div key={index} className="calendar">
+                  {Object.keys(doctor?.dispo.day).map((dayName) => {
+                    return (
                       <>
-                        <div className="card">
-                          <p> {Object.keys(date)}</p>
-                          <p> {Object.values(date)}</p>
+                        <div>
+                          <div className="card"> {dayName}</div>
+                          {doctor.dispo.day[dayName].map((element: any) => {
+                            if (element.dispo) {
+                              return (
+                                <div>
+                                  <p
+                                    className={
+                                      element.dispo
+                                        ? "button available"
+                                        : "button notAvailable"
+                                    }
+                                  >
+                                    {element.starthour}h - {element.endhour}h
+                                  </p>
+                                </div>
+                              );
+                            } else {
+                              return <div></div>;
+                            }
+                          })}
                         </div>
                       </>
-                    ))} */}
-                  </div>
+                    );
+                  })}
                 </div>
               </>
             );
