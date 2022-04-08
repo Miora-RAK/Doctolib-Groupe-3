@@ -12,7 +12,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   req,
   res,
 }: any) => {
-  const session = await getSession(req, res);
+  const session = getSession(req, res);
   const email = session?.user.email;
 
   const mongodb = await getDatabase();
@@ -41,8 +41,6 @@ const Forms: React.FC<{ data: any }> = ({ data }) => {
       setStatus(target.value);
     }
   };
-
-  const handleText = (e: any) => {};
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -96,12 +94,7 @@ const Forms: React.FC<{ data: any }> = ({ data }) => {
               Signup Form
             </h2>
             <label>
-              <input
-                type="text"
-                name="name"
-                placeholder="name"
-                onChange={handleText}
-              />
+              <input type="text" name="name" placeholder="name" />
             </label>
             <br />
             <br />
@@ -133,7 +126,6 @@ const Forms: React.FC<{ data: any }> = ({ data }) => {
       </Layout>
     );
   }
-  // console.log(status);
 };
 
 export default Forms;
