@@ -1,39 +1,54 @@
-import type { NextPage } from "next";
+import { getSession } from "@auth0/nextjs-auth0";
+import type { GetServerSideProps, NextPage } from "next";
 import { Layout } from "../components/Layout";
+import { getDatabase } from "../src/utils/database";
 
-const MyAppointment: NextPage = () => {
+export const getServerSideProps: GetServerSideProps = async ({
+  req,
+  res,
+}: any) => {
+  const session = getSession(req, res);
+  const email = session?.user.email;
+
+  const mongodb = await getDatabase();
+  const response = await mongodb
+    .db()
+    .collection("meetings")
+    .find({ user: email })
+    .toArray();
+
+  const data = await JSON.parse(JSON.stringify(response));
+
+  return {
+    props: {
+      data: data,
+    },
+  };
+};
+const MyAppointment: React.FC<{ data: any }> = ({ data }) => {
+  console.log("data", data);
   return (
     <>
       <Layout>
         <div>
           <div className="appointment">
             <h3 className="appointment-text">Mes prochains rendez vous</h3>
+            <br />
             {/* A remplacer par rendez-vous de la collection RDV */}
-            <div>
-              <p>doctor: </p>
-              <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae
-                beatae esse, suscipit ipsam vero hic nihil nemo dolores et
-                deleniti velit earum! Sapiente perferendis minus ratione nulla a
-                rerum voluptatum. Tenetur veritatis optio quis dolores eaque
-                dignissimos, eius facere cum repellendus sapiente provident
-                soluta ipsa assumenda? Repudiandae quia vitae ut. Laborum autem
-                sed facere, aperiam aut repellendus. Omnis, eum tenetur.
-              </p>
-            </div>
-          </div>
-          <div className="appointment">
-            <h3 className="appointment-text">Mes précédents rendez vous</h3>
-            {/* A remplacer par historique de la collection RDV */}
-            <div>
-              <p>doctor: </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Obcaecati, suscipit vel excepturi aperiam animi temporibus quia
-                nesciunt libero sequi fugit a facere doloremque laborum odit,
-                nostrum quos iste? Sunt, ratione.
-              </p>
-            </div>
+            {data.map((element: any) => {
+              return (
+                <div key={element._id}>
+                  <div>
+                    <p>doctor: {element.doctor}</p>
+                    <p> Date : {element.dayName}</p>
+                    <p>
+                      Heure : {element.date} h - {element.endhour} h
+                    </p>
+                  </div>
+                  <br />
+                </div>
+              );
+            })}
           </div>
         </div>
       </Layout>
