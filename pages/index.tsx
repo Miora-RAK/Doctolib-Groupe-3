@@ -2,11 +2,8 @@ import { getSession, useUser } from "@auth0/nextjs-auth0";
 import type { GetServerSideProps, NextPage } from "next";
 import Link from "next/link";
 import React from "react";
-import { Calendar } from "../components/Calendar";
 import { Layout } from "../components/Layout";
 import { getDatabase } from "../src/utils/database";
-import { week } from "../src/utils/weekType";
-import Image from "next/image";
 export const getServerSideProps: GetServerSideProps = async ({
   req,
   res,
@@ -22,6 +19,7 @@ export const getServerSideProps: GetServerSideProps = async ({
     .toArray();
 
   const data = await JSON.parse(JSON.stringify(response));
+  // console.log(data[0].name);
 
   const responseTwo = await mongodb
     .db()
@@ -94,14 +92,19 @@ const Home: React.FC<{ data: any; allData: any; rdv: any }> = ({
         // if connected and is patient
         <Layout>
           <div className="connexion-container">
-            <h1>Patient</h1>
-            <div>
+            <h1>Bienvenue sur votre compte, {data[0].name}</h1>
+             <div>
               <Link href="/myAppointment">
                 <a>
                   <button className="home-button">Mes rendez-vous</button>
                 </a>
               </Link>
+
             </div>
+
+            
+           
+
           </div>
           <form className="form-search-bar" role="search">
             <input
@@ -180,9 +183,10 @@ const Home: React.FC<{ data: any; allData: any; rdv: any }> = ({
       return (
         // if connected and isn't patient
         <Layout>
-          <h1>
+          <h1>Bienvenue sur votre compte, {data[0].name}</h1>
+          <p className="subtitle">
             Planning <hr />
-          </h1>
+          </p>
           <br />
           {data.map((doctor: any, index: any) => {
             return (

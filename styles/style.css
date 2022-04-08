@@ -212,3 +212,29 @@ footer {
 .green {
   background-color: gray;
 }
+
+.subtitle {
+  margin-top: 15px;
+  font-size: 25px;
+}
+
+.formName {
+  margin: auto;
+  display: block;
+  padding: 5px 10px;
+  width: 50%
+}
+.flexForm {
+  display: flex;
+  justify-content: center;
+  margin: 25px 0
+}
+.flexForm>div{
+  margin: 0 20px
+}
+.formButton {
+  margin: auto;
+  margin-top: 25px;
+  display: block;
+  padding: 5px
+}

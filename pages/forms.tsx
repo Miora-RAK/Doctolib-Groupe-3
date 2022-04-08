@@ -94,33 +94,41 @@ const Forms: React.FC<{ data: any }> = ({ data }) => {
               Signup Form
             </h2>
             <label>
-              <input type="text" name="name" placeholder="name" />
+              <input
+                className="formName"
+                type="text"
+                name="name"
+                placeholder="name"
+              />
             </label>
-            <br />
-            <br />
-            <div>
-              <input
-                type="radio"
-                name="drone"
-                value="Patient"
-                onChange={handleChange}
-              />
-              <label htmlFor="name"> Patient</label>
+            <div className="flexForm">
+              <div>
+                <input
+                  type="radio"
+                  name="drone"
+                  value="Patient"
+                  onChange={handleChange}
+                />
+                <label htmlFor="name"> Patient</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  name="drone"
+                  value="Doctor"
+                  onChange={handleChange}
+                />
+                <label htmlFor="email"> Doctor</label>
+              </div>
             </div>
-            <div>
-              <input
-                type="radio"
-                name="drone"
-                value="Doctor"
-                onChange={handleChange}
-              />
-              <label htmlFor="email"> Doctor</label>
-            </div>
-            <br />
 
-            <Calendar dispo={dispo} setDispo={setDispo}></Calendar>
+            {status !== "Doctor" ? null : (
+              <Calendar dispo={dispo} setDispo={setDispo}></Calendar>
+            )}
 
-            <button type="submit">Envoyer</button>
+            <button className="formButton" type="submit">
+              Envoyer
+            </button>
           </form>
         </main>
       </Layout>
