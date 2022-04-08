@@ -75,7 +75,7 @@ const Home: React.FC<{ data: any; allData: any }> = ({ data, allData }) => {
     );
   } else {
     // if connected
-    if (data[0].status === "patient") {
+    if (data[0].status === "Patient") {
       return (
         // if connected and is patient
         <Layout>
@@ -106,17 +106,17 @@ const Home: React.FC<{ data: any; allData: any }> = ({ data, allData }) => {
                     <p>Spécialité:</p>
                     <p>E-mail: {user.email}</p>
                   </div>
-                  <div key={index} className="card">
-                    {Object.keys(user?.dispo?.day).map((dayName) => {
-                      return user.dispo.day[dayName].map((element: any) => {
-                        if (element.dispo) {
-                          return <div>{element.starthour}</div>;
-                        } else {
-                          return <div></div>;
-                        }
-                      });
-                    })}
-                  </div>
+                  {/* <div key={index}> */}
+                  {Object.keys(user?.dispo?.day).map((dayName) => {
+                    return user.dispo.day[dayName].map((element: any) => {
+                      if (element.dispo) {
+                        return <div>{element.starthour}h-</div>;
+                      } else {
+                        return <div></div>;
+                      }
+                    });
+                  })}
+                  {/* </div> */}
                 </div>
               </>
             );
