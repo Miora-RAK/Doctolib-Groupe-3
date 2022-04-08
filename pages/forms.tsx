@@ -118,7 +118,7 @@ const Forms: React.FC<{ data: any }> = ({ data }) => {
             </div>
             <br />
 
-            {status === "Patient" ? null : (
+            {status !== "Doctor" ? null : (
               <Calendar dispo={dispo} setDispo={setDispo}></Calendar>
             )}
 
