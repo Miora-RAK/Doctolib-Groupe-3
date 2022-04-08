@@ -46,7 +46,6 @@ const Home: React.FC<{ data: any; allData: any }> = ({ data, allData }) => {
     return (
       <Layout>
         <div className="connexion-container">
-          <h1>No data</h1>
           <Link href="/api/auth/login">
             <a>
               <button className="home-button">
@@ -138,7 +137,7 @@ const Home: React.FC<{ data: any; allData: any }> = ({ data, allData }) => {
                                       <a>
                                         <p
                                           className={
-                                            element.dispo
+                                            element.dispo && !element.reserved
                                               ? "button available"
                                               : "button notAvailable"
                                           }
@@ -192,7 +191,7 @@ const Home: React.FC<{ data: any; allData: any }> = ({ data, allData }) => {
                                 <div>
                                   <p
                                     className={
-                                      element.dispo
+                                      element.dispo && !element.reserved
                                         ? "button available"
                                         : "button notAvailable"
                                     }
