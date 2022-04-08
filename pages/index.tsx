@@ -29,17 +29,31 @@ export const getServerSideProps: GetServerSideProps = async ({
     .find({ status: "Doctor" })
     .toArray();
   const allData = await JSON.parse(JSON.stringify(responseTwo));
+  // RDV
+  const responseThree = await mongodb
+    .db()
+    .collection("meetings")
+    .find({ doctor: email })
+    .toArray();
+
+  const rdv = await JSON.parse(JSON.stringify(responseThree));
 
   return {
     props: {
       data: data,
       allData: allData,
+      rdv: rdv,
     },
   };
 };
 
-const Home: React.FC<{ data: any; allData: any }> = ({ data, allData }) => {
+const Home: React.FC<{ data: any; allData: any; rdv: any }> = ({
+  data,
+  allData,
+  rdv,
+}) => {
   const { user, error, isLoading } = useUser();
+  console.log(rdv);
 
   if (!user) {
     // if no connected
@@ -84,13 +98,10 @@ const Home: React.FC<{ data: any; allData: any }> = ({ data, allData }) => {
             <div>
               <Link href="/myAppointment">
                 <a>
-                  <p>Mes rendez-vous</p>
+                  <button className="home-button">Mes rendez-vous</button>
                 </a>
               </Link>
             </div>
-            <button className="home-button">
-              Aucun RDV de prévue (RDV prévue pour le...)
-            </button>
           </div>
           <form className="form-search-bar" role="search">
             <input
@@ -115,9 +126,6 @@ const Home: React.FC<{ data: any; allData: any }> = ({ data, allData }) => {
                       <strong>Status:</strong> {user.status}
                     </p>
                     <p>
-                      <strong>Spécialité:</strong>
-                    </p>
-                    <p>
                       <strong>E-mail:</strong> {user.email}
                     </p>
                   </div>
@@ -132,7 +140,7 @@ const Home: React.FC<{ data: any; allData: any }> = ({ data, allData }) => {
                                 return (
                                   <div>
                                     <Link
-                                      href={`/api/appointement?date=${element.starthour}&dayName=${dayName}&doctor=${user.email}&user=${data[0].email}`}
+                                      href={`/api/appointement?date=${element.starthour}&endhour=${element.endhour}&dayName=${dayName}&doctor=${user.email}&user=${data[0].email}`}
                                     >
                                       <a>
                                         <p
@@ -212,6 +220,25 @@ const Home: React.FC<{ data: any; allData: any }> = ({ data, allData }) => {
               </>
             );
           })}
+          <h1>
+            RDV <hr />
+          </h1>
+          <div>
+            {rdv.map((element: any) => {
+              return (
+                <div key={element._id}>
+                  <div>
+                    <p>Patient: {element.user}</p>
+                    <p> Date : {element.dayName}</p>
+                    <p>
+                      Heure : {element.date} h - {element.endhour} h
+                    </p>
+                  </div>
+                  <br />
+                </div>
+              );
+            })}
+          </div>
         </Layout>
       );
     }

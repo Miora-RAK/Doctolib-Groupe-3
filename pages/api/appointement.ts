@@ -1,7 +1,15 @@
 import { getDatabase } from "../../src/utils/database";
 
 export default async function handler(
-  req: { query: { date: any; dayName: string; doctor: string; user: string } },
+  req: {
+    query: {
+      date: any;
+      dayName: string;
+      doctor: string;
+      user: string;
+      endhour: string;
+    };
+  },
   res: { redirect: (arg0: string, arg1: number) => void }
 ) {
   const mongodb = await getDatabase();
@@ -23,6 +31,18 @@ export default async function handler(
               },
             }
           );
+        const rdv = await mongodb
+          .db()
+          .collection("meetings")
+          .insertMany([
+            {
+              user: req.query.user,
+              doctor: req.query.doctor,
+              dayName: req.query.dayName,
+              date: req.query.date,
+              endhour: req.query.endhour,
+            },
+          ]);
       } else if (req.query.date === "10") {
         const user = mongodb
           .db()
@@ -35,6 +55,18 @@ export default async function handler(
               },
             }
           );
+        const rdv = await mongodb
+          .db()
+          .collection("meetings")
+          .insertMany([
+            {
+              user: req.query.user,
+              doctor: req.query.doctor,
+              dayName: req.query.dayName,
+              date: req.query.date,
+              endhour: req.query.endhour,
+            },
+          ]);
       } else if (req.query.date === "11") {
         const user = mongodb
           .db()
@@ -47,6 +79,18 @@ export default async function handler(
               },
             }
           );
+        const rdv = await mongodb
+          .db()
+          .collection("meetings")
+          .insertMany([
+            {
+              user: req.query.user,
+              doctor: req.query.doctor,
+              dayName: req.query.dayName,
+              date: req.query.date,
+              endhour: req.query.endhour,
+            },
+          ]);
       }
       break;
 
@@ -64,6 +108,18 @@ export default async function handler(
               },
             }
           );
+        const rdv = await mongodb
+          .db()
+          .collection("meetings")
+          .insertMany([
+            {
+              user: req.query.user,
+              doctor: req.query.doctor,
+              dayName: req.query.dayName,
+              date: req.query.date,
+              endhour: req.query.endhour,
+            },
+          ]);
       } else if (req.query.date === "10") {
         const user = mongodb
           .db()
@@ -76,6 +132,18 @@ export default async function handler(
               },
             }
           );
+        const rdv = await mongodb
+          .db()
+          .collection("meetings")
+          .insertMany([
+            {
+              user: req.query.user,
+              doctor: req.query.doctor,
+              dayName: req.query.dayName,
+              date: req.query.date,
+              endhour: req.query.endhour,
+            },
+          ]);
       } else if (req.query.date === "11") {
         const user = mongodb
           .db()
@@ -88,6 +156,18 @@ export default async function handler(
               },
             }
           );
+        const rdv = await mongodb
+          .db()
+          .collection("meetings")
+          .insertMany([
+            {
+              user: req.query.user,
+              doctor: req.query.doctor,
+              dayName: req.query.dayName,
+              date: req.query.date,
+              endhour: req.query.endhour,
+            },
+          ]);
       }
       break;
 
@@ -105,6 +185,18 @@ export default async function handler(
               },
             }
           );
+        const rdv = await mongodb
+          .db()
+          .collection("meetings")
+          .insertMany([
+            {
+              user: req.query.user,
+              doctor: req.query.doctor,
+              dayName: req.query.dayName,
+              date: req.query.date,
+              endhour: req.query.endhour,
+            },
+          ]);
       } else if (req.query.date === "10") {
         const user = mongodb
           .db()
@@ -117,6 +209,18 @@ export default async function handler(
               },
             }
           );
+        const rdv = await mongodb
+          .db()
+          .collection("meetings")
+          .insertMany([
+            {
+              user: req.query.user,
+              doctor: req.query.doctor,
+              dayName: req.query.dayName,
+              date: req.query.date,
+              endhour: req.query.endhour,
+            },
+          ]);
       } else if (req.query.date === "11") {
         const user = mongodb
           .db()
@@ -129,6 +233,18 @@ export default async function handler(
               },
             }
           );
+        const rdv = await mongodb
+          .db()
+          .collection("meetings")
+          .insertMany([
+            {
+              user: req.query.user,
+              doctor: req.query.doctor,
+              dayName: req.query.dayName,
+              date: req.query.date,
+              endhour: req.query.endhour,
+            },
+          ]);
       }
       break;
 
@@ -146,6 +262,18 @@ export default async function handler(
               },
             }
           );
+        const rdv = await mongodb
+          .db()
+          .collection("meetings")
+          .insertMany([
+            {
+              user: req.query.user,
+              doctor: req.query.doctor,
+              dayName: req.query.dayName,
+              date: req.query.date,
+              endhour: req.query.endhour,
+            },
+          ]);
       } else if (req.query.date === "10") {
         const user = mongodb
           .db()
@@ -158,6 +286,18 @@ export default async function handler(
               },
             }
           );
+        const rdv = await mongodb
+          .db()
+          .collection("meetings")
+          .insertMany([
+            {
+              user: req.query.user,
+              doctor: req.query.doctor,
+              dayName: req.query.dayName,
+              date: req.query.date,
+              endhour: req.query.endhour,
+            },
+          ]);
       } else if (req.query.date === "11") {
         const user = mongodb
           .db()
@@ -170,6 +310,18 @@ export default async function handler(
               },
             }
           );
+        const rdv = await mongodb
+          .db()
+          .collection("meetings")
+          .insertMany([
+            {
+              user: req.query.user,
+              doctor: req.query.doctor,
+              dayName: req.query.dayName,
+              date: req.query.date,
+              endhour: req.query.endhour,
+            },
+          ]);
       }
       break;
 
@@ -187,6 +339,18 @@ export default async function handler(
               },
             }
           );
+        const rdv = await mongodb
+          .db()
+          .collection("meetings")
+          .insertMany([
+            {
+              user: req.query.user,
+              doctor: req.query.doctor,
+              dayName: req.query.dayName,
+              date: req.query.date,
+              endhour: req.query.endhour,
+            },
+          ]);
       } else if (req.query.date === "10") {
         const user = mongodb
           .db()
@@ -199,6 +363,18 @@ export default async function handler(
               },
             }
           );
+        const rdv = await mongodb
+          .db()
+          .collection("meetings")
+          .insertMany([
+            {
+              user: req.query.user,
+              doctor: req.query.doctor,
+              dayName: req.query.dayName,
+              date: req.query.date,
+              endhour: req.query.endhour,
+            },
+          ]);
       } else if (req.query.date === "11") {
         const user = mongodb
           .db()
@@ -211,6 +387,18 @@ export default async function handler(
               },
             }
           );
+        const rdv = await mongodb
+          .db()
+          .collection("meetings")
+          .insertMany([
+            {
+              user: req.query.user,
+              doctor: req.query.doctor,
+              dayName: req.query.dayName,
+              date: req.query.date,
+              endhour: req.query.endhour,
+            },
+          ]);
       }
       break;
   }
