@@ -72,64 +72,67 @@ const Forms: React.FC<{ data: any }> = ({ data }) => {
   if (data[0].status) {
     return (
       <Layout>
-        <Link href="/">
-          <a>
-            <h2>HOMEPAGE</h2>
-          </a>
-        </Link>
+        <div className="container">
+          <Link href="/">
+            <a className="linkHomeForm">Homepage</a>
+          </Link>
+        </div>
       </Layout>
     );
   } else {
     return (
       <Layout>
         <main>
-          <form onSubmit={handleSubmit}>
-            <h2
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                paddingBottom: "3em",
-              }}
-            >
-              Signup Form
-            </h2>
-            <label>
-              <input
-                className="formName"
-                type="text"
-                name="name"
-                placeholder="name"
-              />
-            </label>
-            <div className="flexForm">
-              <div>
+          <div className="container">
+            <form onSubmit={handleSubmit}>
+              <h2
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  paddingBottom: "3em",
+                }}
+              >
+                Signup Form
+              </h2>
+              <label>
                 <input
-                  type="radio"
-                  name="drone"
-                  value="Patient"
-                  onChange={handleChange}
+                  className="formName"
+                  type="text"
+                  name="name"
+                  placeholder="name"
                 />
-                <label htmlFor="name"> Patient</label>
+              </label>
+              <div className="flexForm">
+                <div>
+                  <input
+                    type="radio"
+                    name="drone"
+                    value="Patient"
+                    onChange={handleChange}
+                  />
+                  <label htmlFor="name"> Patient</label>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    name="drone"
+                    value="Doctor"
+                    onChange={handleChange}
+                  />
+                  <label htmlFor="email"> Doctor</label>
+                </div>
               </div>
-              <div>
-                <input
-                  type="radio"
-                  name="drone"
-                  value="Doctor"
-                  onChange={handleChange}
-                />
-                <label htmlFor="email"> Doctor</label>
+              <div className="calendarForm">
+                {status !== "Doctor" ? null : (
+                  <Calendar dispo={dispo} setDispo={setDispo}></Calendar>
+                )}
               </div>
-            </div>
 
-            {status !== "Doctor" ? null : (
-              <Calendar dispo={dispo} setDispo={setDispo}></Calendar>
-            )}
-
-            <button className="formButton" type="submit">
-              Envoyer
-            </button>
-          </form>
+              <button className="formButton" type="submit">
+                Envoyer
+              </button>
+            </form>
+          </div>
         </main>
       </Layout>
     );

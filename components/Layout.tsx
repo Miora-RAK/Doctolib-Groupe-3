@@ -1,23 +1,6 @@
-import { getSession } from "@auth0/nextjs-auth0";
-import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import React from "react";
-import { Navbar } from "./navbar";
-
-export const getServerSideProps: GetServerSideProps = async ({
-  req,
-  res,
-}: any) => {
-  const session = getSession(req, res);
-  // console.log("=============", session?.user.name);
-
-  return {
-    props: {
-      session: session,
-    },
-  };
-};
 
 export const Layout: React.FC = ({ children }) => {
   return (
@@ -49,9 +32,9 @@ export const Layout: React.FC = ({ children }) => {
         </ul>
       </nav>
 
-      <div className="container">{children}</div>
+      <div>{children}</div>
 
-      <footer>Footer</footer>
+      <footer>Copyright©</footer>
     </>
   );
 };
