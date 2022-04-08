@@ -10,7 +10,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   req,
   res,
 }: any) => {
-  const session = await getSession(req, res);
+  const session = getSession(req, res);
   const email = session?.user.email;
 
   const mongodb = await getDatabase();
@@ -83,9 +83,9 @@ const Home: React.FC<{ data: any; allData: any }> = ({ data, allData }) => {
             <h1>Patient</h1>
             <div>
               <Link href="/myAppointment">
-              <a>
-              <p>Mes rendez-vous</p>
-              </a>
+                <a>
+                  <p>Mes rendez-vous</p>
+                </a>
               </Link>
             </div>
             <button className="home-button">

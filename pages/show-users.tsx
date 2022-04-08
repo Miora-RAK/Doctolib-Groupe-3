@@ -36,9 +36,6 @@ const Cart: React.FC<{
           <li>status: {status}</li>
           <li>diponibilities: </li>
           <li>{`${Object.keys(disponibilities)}\n`}</li>
-          {/* {disponibilities.map((element: string[]) => {
-            return <div key={"test"}>{element}</div>
-          })} */}
         </div>
         {console.log(disponibilities)}
       </Layout>
