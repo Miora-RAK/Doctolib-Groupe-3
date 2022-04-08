@@ -107,8 +107,8 @@ const Home: React.FC<{ data: any; allData: any }> = ({ data, allData }) => {
           {allData.map((user: any, index: any) => {
             return (
               <>
-                <div className="row-doctor-list">
-                  <div key={index} className="card">
+                <div key={index} className="row-doctor-list">
+                  <div className="card">
                     <p>
                       <strong>Dr</strong> {user.name}
                     </p>
@@ -122,25 +122,32 @@ const Home: React.FC<{ data: any; allData: any }> = ({ data, allData }) => {
                       <strong>E-mail:</strong> {user.email}
                     </p>
                   </div>
-                  <div key={index} className="calendar">
+                  <div className="calendar">
                     {Object.keys(user?.dispo?.day).map((dayName) => {
                       return (
                         <>
-                          <div>
+                          <div key={dayName}>
                             <div className="card"> {dayName}</div>
                             {user.dispo.day[dayName].map((element: any) => {
                               if (element.dispo) {
                                 return (
                                   <div>
-                                    <p
-                                      className={
-                                        element.dispo
-                                          ? "button available"
-                                          : "button notAvailable"
-                                      }
+                                    <Link
+                                      href={`/api/appointement?date=${element.starthour}&dayName=${dayName}&doctor=${user.email}&user=${data[0].email}`}
                                     >
-                                      {element.starthour}h - {element.endhour}h
-                                    </p>
+                                      <a>
+                                        <p
+                                          className={
+                                            element.dispo
+                                              ? "button available"
+                                              : "button notAvailable"
+                                          }
+                                        >
+                                          {element.starthour}h -{" "}
+                                          {element.endhour}h
+                                        </p>
+                                      </a>
+                                    </Link>
                                   </div>
                                 );
                               } else {
@@ -177,7 +184,7 @@ const Home: React.FC<{ data: any; allData: any }> = ({ data, allData }) => {
                   {Object.keys(doctor?.dispo.day).map((dayName) => {
                     return (
                       <>
-                        <div>
+                        <div key={dayName}>
                           <div className="card"> {dayName}</div>
                           {doctor.dispo.day[dayName].map((element: any) => {
                             if (element.dispo) {
