@@ -118,7 +118,9 @@ const Forms: React.FC<{ data: any }> = ({ data }) => {
             </div>
             <br />
 
-            <Calendar dispo={dispo} setDispo={setDispo}></Calendar>
+            {status !== "Doctor" ? null : (
+              <Calendar dispo={dispo} setDispo={setDispo}></Calendar>
+            )}
 
             <button type="submit">Envoyer</button>
           </form>
