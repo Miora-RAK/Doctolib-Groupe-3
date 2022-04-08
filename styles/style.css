@@ -10,7 +10,7 @@
 /* LAYOUT */
 nav {
   width: 70vw;
-  margin: auto;
+  margin: 0 auto;
   padding: 15px 0;
 }
 
@@ -34,19 +34,14 @@ footer {
   width: 100vw;
   padding: 15px 0;
   text-align: center;
+  margin-top: 75px;
 }
 
 /* BODY */
 .container {
   width: 70vw;
   margin: auto;
-  min-height: 90vh;
-  padding: 2rem 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  padding: 8vh 0;
 }
 
 /* HOME */
@@ -94,10 +89,9 @@ footer {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin-top: 10px;
 }
 .row-doctor-list {
-  width: 80rem;
-  height: auto;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -164,13 +158,21 @@ footer {
 /* myAppointment */
 .appointment {
   margin-bottom: 6em;
-  max-width: 80%;
-  text-align: justify;
+  border: #8fbc8f solid 2px;
+  border-radius: 10px;
+  width: fit-content;
+  padding: 25px 50px;
+  margin: auto;
+  margin-top: 50px;
 }
+
+.appointText {
+  margin: 5px 0;
+}
+
 .appointment-text {
   font-size: 1.5em;
-  margin-left: 2em;
-  margin-top: 2em;
+  text-align: center;
 }
 
 /* Calendrier */
@@ -216,25 +218,57 @@ footer {
 .subtitle {
   margin-top: 15px;
   font-size: 25px;
+  text-align: center;
 }
 
 .formName {
   margin: auto;
   display: block;
   padding: 5px 10px;
-  width: 50%
+  width: 50%;
 }
 .flexForm {
   display: flex;
   justify-content: center;
-  margin: 25px 0
+  margin: 25px 0;
 }
-.flexForm>div{
-  margin: 0 20px
+.flexForm > div {
+  margin: 0 20px;
 }
 .formButton {
   margin: auto;
   margin-top: 25px;
   display: block;
-  padding: 5px
+  padding: 5px;
+  margin-bottom: 25vh;
+}
+
+.calendarForm {
+  display: block;
+  margin: auto;
+  width: fit-content;
+}
+
+.linkHomeForm {
+  padding: 20px 10px;
+  display: block;
+  margin: auto;
+  width: fit-content;
+  padding: 25px 50px;
+  border: #8fbc8f solid 2px;
+  border-radius: 10px;
+  color: #006400;
+}
+
+.linkHomeForm:hover {
+  color: white;
+  padding: 25px 50px;
+  border: white solid 2px;
+  border-radius: 10px;
+  background-color: #006400;
+}
+
+.titleDoctor {
+  background-color: #8fbc8f;
+  padding: 75px 50px;
 }

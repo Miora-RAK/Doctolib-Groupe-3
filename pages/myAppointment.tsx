@@ -30,18 +30,17 @@ const MyAppointment: React.FC<{ data: any }> = ({ data }) => {
   return (
     <>
       <Layout>
-        <div>
+        <div className="container">
+          <h3 className="appointment-text">Mes prochains rendez vous</h3>
+
           <div className="appointment">
-            <h3 className="appointment-text">Mes prochains rendez vous</h3>
-            <br />
-            {/* A remplacer par rendez-vous de la collection RDV */}
             {data.map((element: any) => {
               return (
                 <div key={element._id}>
                   <div>
-                    <p>doctor: {element.doctor}</p>
-                    <p> Date : {element.dayName}</p>
-                    <p>
+                    <p className="appointText">doctor: {element.doctor}</p>
+                    <p className="appointText"> Date : {element.dayName}</p>
+                    <p className="appointText">
                       Heure : {element.date} h - {element.endhour} h
                     </p>
                   </div>

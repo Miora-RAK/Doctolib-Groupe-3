@@ -66,8 +66,10 @@ const Home: React.FC<{ data: any; allData: any; rdv: any }> = ({
             </a>
           </Link>
         </div>
-        <div>
-          <p>Prendre rendez-vous avec un médecin en 3 étapes</p>
+        <div className="container">
+          <p className="subtitle">
+            Prendre rendez-vous avec un médecin en 3 étapes :
+          </p>
           <div className="row">
             <div className="card">
               <h3>1</h3>
@@ -93,29 +95,27 @@ const Home: React.FC<{ data: any; allData: any; rdv: any }> = ({
         <Layout>
           <div className="connexion-container">
             <h1>Bienvenue sur votre compte, {data[0].name}</h1>
-             <div>
+            <div>
               <Link href="/myAppointment">
                 <a>
                   <button className="home-button">Mes rendez-vous</button>
                 </a>
               </Link>
-
             </div>
-
-            
-           
-
           </div>
-          <form className="form-search-bar" role="search">
-            <input
-              type="text"
-              placeholder="Rechercher sur le site..."
-              size={50}
-            />
-            <button className="form-search-bar-button" type="submit">
-              Trouver un médecin
-            </button>
-          </form>
+          <div className="container">
+            <form className="form-search-bar" role="search">
+              <input
+                type="text"
+                placeholder="Rechercher sur le site..."
+                size={50}
+              />
+              <button className="form-search-bar-button" type="submit">
+                Trouver un médecin
+              </button>
+            </form>
+          </div>
+
           {/* liste des docteurs */}
           {allData.map((user: any, index: any) => {
             return (
@@ -183,54 +183,54 @@ const Home: React.FC<{ data: any; allData: any; rdv: any }> = ({
       return (
         // if connected and isn't patient
         <Layout>
-          <h1>Bienvenue sur votre compte, {data[0].name}</h1>
-          <p className="subtitle">
-            Planning <hr />
-          </p>
-          <br />
+          <h1 className="titleDoctor">
+            Bienvenue sur votre compte, {data[0].name}
+          </h1>
+          <p className="subtitle">Planning</p>
+
           {data.map((doctor: any, index: any) => {
             return (
               <>
-                <div key={index} className="calendar">
-                  {Object.keys(doctor?.dispo.day).map((dayName) => {
-                    return (
-                      <>
-                        <div key={dayName}>
-                          <div className="card"> {dayName}</div>
-                          {doctor.dispo.day[dayName].map((element: any) => {
-                            if (element.dispo) {
-                              return (
-                                <div>
-                                  <p
-                                    className={
-                                      element.dispo && !element.reserved
-                                        ? "button available"
-                                        : "button notAvailable"
-                                    }
-                                  >
-                                    {element.starthour}h - {element.endhour}h
-                                  </p>
-                                </div>
-                              );
-                            } else {
-                              return <div></div>;
-                            }
-                          })}
-                        </div>
-                      </>
-                    );
-                  })}
+                <div className="container">
+                  <div key={index} className="calendar">
+                    {Object.keys(doctor?.dispo?.day).map((dayName) => {
+                      return (
+                        <>
+                          <div key={dayName}>
+                            <div className="card"> {dayName}</div>
+                            {doctor.dispo.day[dayName].map((element: any) => {
+                              if (element.dispo) {
+                                return (
+                                  <div>
+                                    <p
+                                      className={
+                                        element.dispo && !element.reserved
+                                          ? "button available"
+                                          : "button notAvailable"
+                                      }
+                                    >
+                                      {element.starthour}h - {element.endhour}h
+                                    </p>
+                                  </div>
+                                );
+                              } else {
+                                return <div></div>;
+                              }
+                            })}
+                          </div>
+                        </>
+                      );
+                    })}
+                  </div>
                 </div>
               </>
             );
           })}
-          <h1>
-            RDV <hr />
-          </h1>
+          <p className="subtitle">Rendez-vous</p>
           <div>
             {rdv.map((element: any) => {
               return (
-                <div key={element._id}>
+                <div key={element._id} className="appointment">
                   <div>
                     <p>Patient: {element.user}</p>
                     <p> Date : {element.dayName}</p>
